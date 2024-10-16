@@ -1,106 +1,55 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const impactList = document.getElementById('impact-list');
-    const quizContainer = document.getElementById('quiz-container');
-    const questionEl = document.getElementById('question');
-    const choicesEl = document.getElementById('choices');
-    const submitBtn = document.getElementById('submit');
-    const resultEl = document.getElementById('result');
-
-    // Smooth scrolling for navigation
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
+document.addEventListener('DOMContentLoaded', () => {
+    // Animate statistics
+    const statistics = document.querySelectorAll('.statistic');
+    statistics.forEach(statistic => {
+        const value = statistic.querySelector('.value');
+        const targetValue = parseInt(statistic.dataset.value);
+        animateValue(value, 0, targetValue, 2000);
     });
 
-    // Add click event to impact list items
-    impactList.addEventListener('click', function(e) {
-        const impactItem = e.target.closest('.impact-item');
-        if (impactItem) {
-            const title = impactItem.querySelector('h3').textContent;
-            const description = impactItem.querySelector('p').textContent;
-            alert(`${title}: ${description}`);
-        }
-    });
-
-    // Quiz questions
-    const questions = [
-        {
-            question: "Which of the following is NOT a primary function of smart grids?",
-            choices: ["Automated meter reading", "Real-time energy pricing", "Social media integration", "Demand response management"],
-            correctAnswer: 2
+    // Create flowchart
+    const ctx = document.getElementById('impactChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Energy Conservation', 'Green Energy', 'Renewable Energy'],
+            datasets: [{
+                label: 'IT Impact (%)',
+                data: [75, 85, 90],
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(153, 102, 255, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 1
+            }]
         },
-        {
-            question: "How does IoT contribute to energy conservation?",
-            choices: ["By increasing energy consumption", "By monitoring and optimizing energy usage", "By replacing all manual processes", "IoT doesn't contribute to energy conservation"],
-            correctAnswer: 1
-        },
-        {
-            question: "What is the main advantage of using data analytics in energy conservation?",
-            choices: ["It makes energy more expensive", "It reduces the need for electricity", "It helps identify patterns and optimize energy usage", "It completely eliminates the need for human oversight"],
-            correctAnswer: 2
-        }
-    ];
-
-    let currentQuestion = 0;
-
-    function loadQuestion() {
-        const question = questions[currentQuestion];
-        questionEl.textContent = question.question;
-        choicesEl.innerHTML = '';
-        question.choices.forEach((choice, index) => {
-            const button = document.createElement('button');
-            button.textContent = choice;
-            button.addEventListener('click', () => selectChoice(index));
-            choicesEl.appendChild(button);
-        });
-        resultEl.textContent = '';
-    }
-
-    function selectChoice(index) {
-        const buttons = choicesEl.getElementsByTagName('button');
-        for (let button of buttons) {
-            button.classList.remove('selected');
-        }
-        buttons[index].classList.add('selected');
-    }
-
-    submitBtn.addEventListener('click', function() {
-        const selected = choicesEl.querySelector('.selected');
-        if (selected) {
-            const selectedIndex = Array.from(choicesEl.children).indexOf(selected);
-            if (selectedIndex === questions[currentQuestion].correctAnswer) {
-                resultEl.textContent = "Correct!";
-                resultEl.style.color = "green";
-            } else {
-                resultEl.textContent = "Incorrect. Try again!";
-                resultEl.style.color = "red";
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100
+                }
             }
-            currentQuestion++;
-            if (currentQuestion < questions.length) {
-                setTimeout(loadQuestion, 1500);
-            } else {
-                setTimeout(() => {
-                    quizContainer.innerHTML = "<h3>Quiz completed! Thanks for participating!</h3>";
-                }, 1500);
-            }
-        } else {
-            alert("Please select an answer!");
         }
-    });
-
-    loadQuestion();
-
-    // Parallax effect
-    window.addEventListener('scroll', function() {
-        const parallaxSections = document.querySelectorAll('.parallax');
-        parallaxSections.forEach(section => {
-            const scrollPosition = window.pageYOffset;
-            const sectionSpeed = 0.5;
-            section.style.backgroundPositionY = `${scrollPosition * sectionSpeed}px`;
-        });
     });
 });
+
+function animateValue(obj, start, end, duration) {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.innerHTML = Math.floor(progress * (end - start) + start);
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+        }
+    };
+    window.requestAnimationFrame(step);
+}

@@ -3,74 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT in Energy Conservation</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <title>Role of IT in Energy Conservation and Renewable Energy</title>
+    <link rel="stylesheet" href="styless.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
+        <h1>Role of IT in Energy Conservation and Renewable Energy</h1>
         <nav>
             <ul>
-                <li><a href="#intro">Intro</a></li>
-                <li><a href="#key-areas">Key Areas</a></li>
-                <li><a href="#interactive">Quiz</a></li>
+                <li><a href="#conservation">Energy Conservation</a></li>
+                <li><a href="#green-energy">Green Energy</a></li>
+                <li><a href="#renewable">Renewable Energy</a></li>
             </ul>
         </nav>
-        <h1>The Role of IT in Energy Conservation</h1>
     </header>
+
     <main>
-        <section id="intro" class="parallax">
+        <section id="conservation">
+            <h2>Energy Conservation: A Path to Sustainable Living</h2>
             <div class="content">
-                <h2>Introduction</h2>
-                <p>Information Technology (IT) plays a crucial role in modern energy conservation efforts. From smart grids to energy management systems, IT solutions are helping to reduce energy consumption and increase efficiency across various sectors.</p>
-                <img src="https://taraenergy.com/wp-content/uploads/2021/01/energy-conservation-definition-lightbulb-energy-image.jpg" alt="Energy conservation lightbulb with leaf" class="intro-image">
-            </div>
-        </section>
-        <section id="key-areas">
-            <h2>Key Areas of Impact</h2>
-            <div id="impact-list">
-                <div class="impact-item">
-                    <i class="fas fa-network-wired"></i>
-                    <h3>Smart Grids</h3>
-                    <p>Optimizing energy distribution and consumption through intelligent power networks.</p>
+                <div class="text">
+                    <p>
+                        <b>Energy conservation involves reducing energy consumption through efficient practices and mindful usage. By optimizing energy use in homes, businesses, and industries, we can decrease our reliance on non-renewable resources, lower utility costs, and minimize environmental impacts. Adopting energy-saving technologies, such as LED lighting, smart thermostats, and energy-efficient appliances, along with behavioral changes like turning off lights when not in use, are simple yet effective steps toward a greener future. Together, we can make a significant difference by conserving energy and preserving the planet for future generations.</b></p>
+                    <div class="statistic" data-value="30">
+                        <span class="value">0</span>%
+                        <p>Reduction in energy consumption through smart building technologies</p>
+                    </div>
                 </div>
-                <div class="impact-item">
-                    <i class="fas fa-building"></i>
-                    <h3>Building Management Systems</h3>
-                    <p>Automating and optimizing energy usage in commercial and residential buildings.</p>
-                </div>
-                <div class="impact-item">
-                    <i class="fas fa-wifi"></i>
-                    <h3>IoT and Sensor Networks</h3>
-                    <p>Collecting real-time data for efficient energy monitoring and management.</p>
-                </div>
-                <div class="impact-item">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Data Analytics for Energy Optimization</h3>
-                    <p>Analyzing energy consumption patterns to identify areas for improvement.</p>
-                </div>
-                <div class="impact-item">
-                    <i class="fas fa-solar-panel"></i>
-                    <h3>Renewable Energy Integration</h3>
-                    <p>Facilitating the integration of renewable energy sources into existing power grids.</p>
+                <div class="icon">
+                    <img src="https://filaantro.org/blog/uploads/save-world-00-13-12-20221.jpg" alt="Energy Conservation Icon" class="icon-image">
                 </div>
             </div>
         </section>
-        <section id="interactive" class="parallax">
+
+        <section id="green-energy">
+            <h2>Green Energy: Clean Power for a Sustainable Future</h2>
             <div class="content">
-                <h2>Interactive Quiz</h2>
-                <div id="quiz-container">
-                    <p id="question"></p>
-                    <div id="choices"></div>
-                    <button id="submit">Submit Answer</button>
-                    <p id="result"></p>
+                <div class="icon">
+                    <img src="https://drmcet.ac.in/wp-content/uploads/2024/06/Renewable-energy-image.png" alt="Green Energy Icon" class="icon-image">
+                </div>
+                <div class="text">
+                    <p><b>Green energy comes from renewable sources like sunlight, wind, and water, which naturally replenish without harming the environment. Unlike fossil fuels, green energy produces little to no pollution, helping to reduce carbon emissions and combat climate change. By using technologies like solar panels and wind turbines, we can tap into this clean, sustainable power to meet our energy needs while protecting the planet.
+
+                    </b></p>
+                    <div class="statistic" data-value="60">
+                        <span class="value">0</span>%
+                        <p>Increase in green energy adoption due to IT-driven smart grid technologies</p>
+                    </div>
                 </div>
             </div>
+        </section>
+
+        <section id="renewable">
+            <h2>Renewable Energy: Harnessing Nature’s Power</h2>
+            <div class="content">
+                <div class="text">
+                    <p><b>Renewable energy comes from natural sources that are constantly replenished, such as solar, wind, hydropower, and geothermal energy. Unlike fossil fuels, renewable energy generates clean, sustainable power with minimal environmental impact. By adopting renewable energy solutions, we can reduce greenhouse gas emissions, decrease reliance on finite resources, and create a more sustainable energy future for our planet</b></p>
+                    <div class="statistic" data-value="45">
+                        <span class="value">0</span>%
+                        <p>Improvement in renewable energy forecasting accuracy using AI and machine learning</p>
+                    </div>
+                </div>
+                <div class="icon">
+                    <img src="https://www.alcimed.com/wp-content/uploads/2023/07/environmental-impact-renewable-energy.jpg" alt="Renewable Energy Icon" class="icon-image">
+                </div>
+            </div>
+        </section>
+
+        <section id="flowchart">
+            <h2>IT's Impact on Energy Sectors</h2>
+            <canvas id="impactChart"></canvas>
         </section>
     </main>
+
     <footer>
-        <p>&copy; 2024 IT in Energy Conservation</p>
+        <p class="rj">&copy; 2023 IT in Energy Conservation and Renewable Energy. All rights reserved.</p>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
